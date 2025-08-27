@@ -43,30 +43,6 @@ router.get('/', (req, res) => {
 
 /**
  * @swagger
- * /users/{id}:
- *   get:
- *     tags: [Users]
- *     summary: Retorna um usuário por id
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Usuário encontrado
- *       404:
- *         description: Usuário não encontrado
- */
-router.get('/:id', (req, res) => {
-  const user = usersRepo.getById(req.params.id);
-  if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
-  res.json(user);
-});
-
-/**
- * @swagger
  * /users:
  *   post:
  *     tags: [Users]

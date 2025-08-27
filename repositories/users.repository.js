@@ -9,7 +9,6 @@ function readFile() {
 }
 
 function writeFile(data) {
-  // escreve atomically (síncrono) para evitar perda
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
 }
 
@@ -35,7 +34,7 @@ function create(user) {
 function update(id, newData) {
   const idx = users.findIndex(u => u.id === id);
   if (idx === -1) return null;
-  users[idx] = { ...users[idx], ...newData, id }; // id não é editável
+  users[idx] = { ...users[idx], ...newData, id }; 
   writeFile(users);
   return users[idx];
 }

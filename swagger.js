@@ -6,7 +6,7 @@ const options = {
     info: {
       title: 'API de Usuários',
       version: '1.0.0',
-      description: 'CRUD de usuários, persistindo em data/users.json'
+      description: 'CRUD de usuários'
     },
     components: {
       schemas: {
@@ -25,9 +25,7 @@ const options = {
       }
     }
   },
-   
-servers: [{ url: 'http://localhost:3333' }],
-
+  
   apis: ['./routes/*.js']
 };
 
