@@ -1,22 +1,33 @@
-const express = require ("express");
-const fs = require ("fs")
-const swaggerUi = require("swagger-ui-express");
-const swaggerSpec = require("./swagger");
-const usersRouter = require("./users.routes");
+const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
+const usersRouter = require("./routes/users.routes");
+const usersRepo = require('./repositories/users.repository');
 
-const app = express ();
-const usuarios = JSON.parse(fs.readFileSync("users.json", "utf-8"))
+const PORT = process.env.PORT || 3333;
+const app = express();
+
 app.use(express.json());
 
 
-app.use("/users", usersRouter);
+usersRepo.load();
 
-// documentação Swagger
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const PORT = 3333;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
-  console.log(`📖 Swagger em http://localhost:${PORT}/api-docs`);
+app.use('/users', usersRouter);
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
+app.get('/', (req, res) => res.send({ status: 'ok' }));
+
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ message: 'Erro interno' });
 });
 
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Docs: http://localhost:${PORT}/api-docs`);
+});
