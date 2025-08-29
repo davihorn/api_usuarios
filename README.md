@@ -17,7 +17,7 @@ cd api-usuarios
 npm install
 ```
 
-3. Inicie a API localmente:
+3. Inicie a API localmente pelo terminal:
 
 ```bash
 npm run dev
