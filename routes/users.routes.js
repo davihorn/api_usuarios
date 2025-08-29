@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); //Importando
 const router = express.Router();
 const Joi = require('joi');
 const { v4: uuidv4 } = require('uuid');
@@ -6,7 +6,7 @@ const usersRepo = require('../repositories/users.repository');
 
 const ufList = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
 
-// esquema de validação
+//esquema de validação
 const userSchema = Joi.object({
   nome: Joi.string().min(2).required(),
   sobrenome: Joi.string().min(2).required(),
@@ -16,8 +16,6 @@ const userSchema = Joi.object({
   estado: Joi.string().valid(...ufList).required()
 });
 
-// parcialmente para PUT (substituir) usamos o mesmo required, para PATCH podemos aceitar parcial
-const userSchemaPartial = userSchema.fork(Object.keys(userSchema.describe().keys), (s) => s.optional());
 
 /**
  * @swagger
