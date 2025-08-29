@@ -45,13 +45,13 @@ curl -X POST http://localhost:3333/api-docs \
 ### Listar todos os usuários
 
 ```bash
-curl http://localhost:3333/api-docs
+curl "http://localhost:3333/api-docs"
 ```
 
 ### Buscar usuário por ID
 
 ```bash
-curl http://localhost:3333/api-docs/{id}
+curl "http://localhost:3333/api-docs/{id}"
 ```
 
 Deletar usuário por ID
