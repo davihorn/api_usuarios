@@ -3,9 +3,12 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 const usersRouter = require("./routes/users.routes");
 const usersRepo = require('./repositories/users.repository');
+const cors = require ('cors')
 
 const PORT = process.env.PORT || 3333;
 const app = express();
+
+app.use(cors())
 
 app.use(express.json());
 
